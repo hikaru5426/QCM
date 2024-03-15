@@ -1,0 +1,17 @@
+body{
+    background-color: #f7f797;
+}
+
+.centered_blue{
+    text-align: center;
+    color : #3471eb;
+}
+
+.centered_red{
+    text-align: center;
+    color : red;
+}
+
+.centered{
+    text-align: center;
+}
