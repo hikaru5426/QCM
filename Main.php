@@ -41,13 +41,13 @@ try {
     <body>
         <h1 class="centered blue">Accueil du site QCM :</h1>
 
-        <form action="login.php" method="post">
+        <form action="login.php" method="POST">
             <div class="formAccueil">
                 <span class="bold">Login :</span><input type="text" name="Login"><br><br>
                 <span class="bold">Mot de passe :</span><input type="text" name="MDP"><br><br>
                 
             </div>
-            <div class="centered"><input type="Button" name="btnOKPageAccueil" value="OK"></div>
+            <div class="centered"><input type="submit" value="OK"></div>
         </form>
 
         <p class="centered red">Vous devez obligatoirement saisir un login et mot de passe pour entrer sur l'application QCM</p>
