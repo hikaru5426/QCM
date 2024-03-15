@@ -39,11 +39,17 @@ try {
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <h1 class="centered_blue">Accueil du site QCM :</h1>
-        <form action="login.php" method="post" class="centered">
-            Login :<input type="text" name="Login"><br>
-            Mot de passe :<input type="text" name="MDP"><br>
+        <h1 class="centered blue">Accueil du site QCM :</h1>
+
+        <form action="login.php" method="post">
+            <div class="formAccueil">
+                <span class="bold">Login :</span><input type="text" name="Login"><br><br>
+                <span class="bold">Mot de passe :</span><input type="text" name="MDP"><br><br>
+                
+            </div>
+            <div class="centered"><input type="Button" name="btnOKPageAccueil" value="OK"></div>
         </form>
-        <p class="red_centered">Vous devez obligatoirement saisir un login et mot de passe pour entrer sur l'application QCM</p>
+
+        <p class="centered red">Vous devez obligatoirement saisir un login et mot de passe pour entrer sur l'application QCM</p>
     </body>
 </html>

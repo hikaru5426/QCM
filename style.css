@@ -2,16 +2,28 @@ body{
     background-color: #f7f797;
 }
 
-.centered_blue{
-    text-align: center;
+.left{
+    margin-left:15%;
+}
+
+.blue{
     color : #3471eb;
 }
 
-.centered_red{
-    text-align: center;
+.red{
     color : red;
 }
 
 .centered{
     text-align: center;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.formAccueil{
+
+    text-align:right;
+    margin-right:35%;
 }
