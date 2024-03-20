@@ -1,7 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+
+session_start();
+$servername = 'localhost';
+$username = 'root';
+$password = '';
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=qcm", $username, $password);
@@ -16,8 +18,7 @@ try {
   if ($stmt->rowCount() > 0) {
     echo "<ul>";
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<li>" . $row['IdUtilisateur'] . "</li>"; // Replace "column_name" with the actual column name from your table
-        echo "<li>" . $row['Login'] . "</li>";
+        echo "<li>" . $row['IdUtilisateur'] . "</li>";
         echo "<li>" . $row['MotDePasse'] . "</li>";
         echo "<li>" . $row['Nom'] . "</li>";
         echo "<li>" . $row['Prénom'] . "</li>";
@@ -30,6 +31,34 @@ try {
 } catch(PDOException $e) {
     echo $sql . "<br>" . $e->getMessage();
 }
+
+if (isset($_POST['login'])){
+    try{
+        $connLogin = new PDO("mysql:host=$servername;dbname=qcm", $username, $password);
+        $checkUser = $connLogin->prepare("SELECT * FROM utilisateur WHERE Login = :login AND MotDePasse = :mdp");
+        $checkUser->bindParam(':login', $_POST['login']);
+        $checkUser->bindParam(':mdp', $_POST['mdp']);
+        $checkUser->execute();
+        $user = fetchAll(PDO::FETCH_ASSOC)
+
+        if ($checkUser->fetchColumn() = 1){
+            
+            $_SESSION['idUtilisateur'] = $user[0]['idUtilisateur'] ;
+            $_SESSION['login'] = $user[0]['login'] ;
+            $_SESSION['motDePasse'] = $user[0]['motDePasse'] ;
+            $_SESSION['nom'] = $user[0]['nom'] ;
+            $_SESSION['prénom'] = $user[0]['prénom'] ;
+
+            header("Login.php")
+    }
+    catch(PDOException) $e{
+        echo "The variable sql = " $sql "<br>And e.getMessage() = " . $e->getMessage();
+    }
+    
+    }
+    else
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -43,8 +72,8 @@ try {
 
         <form action="login.php" method="POST">
             <div class="formAccueil">
-                <span class="bold">Login :</span><input type="text" name="Login"><br><br>
-                <span class="bold">Mot de passe :</span><input type="text" name="MDP"><br><br>
+                <span class="bold">Login :</span><input type="text" name="login"><br><br>
+                <span class="bold">Mot de passe :</span><input type="text" name="mdp"><br><br>
                 
             </div>
             <div class="centered"><input type="submit" value="OK"></div>
