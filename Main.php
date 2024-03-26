@@ -5,33 +5,6 @@ $servername = 'localhost';
 $username = 'root';
 $password = '';
 
-try {
-  $conn = new PDO("mysql:host=$servername;dbname=qcm", $username, $password);
-  // set the PDO error mode to exception
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //$query = "INSERT INTO utilisateur(IdUtilisateur, Login, MotDePasse) VALUES('1','Admin','1234')";
-  $query = "SELECT * FROM utilisateur";
-  //$conn->exec($query);
-  $stmt = $conn->query($query);
-
-
-  if ($stmt->rowCount() > 0) {
-    echo "<ul>";
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<li>" . $row['IdUtilisateur'] . "</li>";
-        echo "<li>" . $row['MotDePasse'] . "</li>";
-        echo "<li>" . $row['Nom'] . "</li>";
-        echo "<li>" . $row['Prénom'] . "</li>";
-    }
-    echo "</ul>";
-    } else {
-        echo "0 results";
-    $result = $conn->query($query);
-    }
-} catch(PDOException $e) {
-    echo $sql . "<br>" . $e->getMessage();
-}
-
 if (isset($_POST['login'])){
     try{
         $connLogin = new PDO("mysql:host=$servername;dbname=qcm", $username, $password);
@@ -39,9 +12,9 @@ if (isset($_POST['login'])){
         $checkUser->bindParam(':login', $_POST['login']);
         $checkUser->bindParam(':mdp', $_POST['mdp']);
         $checkUser->execute();
-        $user = fetchAll(PDO::FETCH_ASSOC)
+        $user = fetchAll(PDO::FETCH_ASSOC);
 
-        if ($checkUser->fetchColumn() = 1){
+        if ($checkUser->fetchColumn() == 1){
             
             $_SESSION['idUtilisateur'] = $user[0]['idUtilisateur'] ;
             $_SESSION['login'] = $user[0]['login'] ;
@@ -49,14 +22,15 @@ if (isset($_POST['login'])){
             $_SESSION['nom'] = $user[0]['nom'] ;
             $_SESSION['prénom'] = $user[0]['prénom'] ;
 
-            header("Login.php")
+            header("Login.php");
+        } else{
+
+        }
+        
     }
-    catch(PDOException) $e{
-        echo "The variable sql = " $sql "<br>And e.getMessage() = " . $e->getMessage();
+    catch(PDOException $e){
+        echo "e.getMessage() = " . $e->getMessage();
     }
-    
-    }
-    else
 }
 
 ?>
