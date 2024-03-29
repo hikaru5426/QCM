@@ -21,6 +21,11 @@ if (isset($_POST['login'])){
             $_SESSION['motDePasse'] = $user[0]['motDePasse'] ;
             $_SESSION['nom'] = $user[0]['nom'] ;
             $_SESSION['prénom'] = $user[0]['prénom'] ;
+            var_dump($_SESSION['idUtilisateur']);
+            var_dump($_SESSION['login']);
+            var_dump($_SESSION['motDePasse']);
+            var_dump($_SESSION['nom']);
+            var_dump($_SESSION['prénom']);
 
             header("Login.php");
         } else{
